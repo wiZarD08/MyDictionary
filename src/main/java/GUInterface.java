@@ -5,8 +5,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class GUInterface {
-    private JButton addButton;
     protected JPanel panel;
+    private JButton addButton;
     private JTextField textField;
     private JTextField TTextField;
     private JButton searchButton;
@@ -21,6 +21,8 @@ public class GUInterface {
     private JButton statistButton;
     private JButton infoButton;
     private JButton cardButton;
+    private JButton engButton;
+    private JButton rusButton;
 
     private final DBManager dbManager;
 
@@ -31,20 +33,19 @@ public class GUInterface {
             thisObj = new GUInterface();
     }
 
-    public static GUInterface getThisObj() {
-        return thisObj;
-    }
-
     public GUInterface() {
         dbManager = new DBManager();
 
         JFrame f = new JFrame();
-        f.setSize(750, 550);
+        f.setSize(750, 580);
         f.setContentPane(this.panel);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
 
+        rusButton.setEnabled(false);
         infoButton.setMargin(new java.awt.Insets(1, 2, 1, 2));
+        engButton.setMargin(new java.awt.Insets(1, 2, 1, 2));
+        rusButton.setMargin(new java.awt.Insets(1, 2, 1, 2));
         ButtonGroup SrGroup = new ButtonGroup();
         SrGroup.add(TrSearchRB);
         SrGroup.add(WrSearchRB);
@@ -87,6 +88,14 @@ public class GUInterface {
 
             public void keyReleased(KeyEvent e) {
             }
+        });
+        engButton.addActionListener(e -> {
+            engButton.setEnabled(false);
+            rusButton.setEnabled(true);
+        });
+        rusButton.addActionListener(e -> {
+            rusButton.setEnabled(false);
+            engButton.setEnabled(true);
         });
     }
 
