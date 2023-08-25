@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUInterface">
+  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="16" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="110" left="110" bottom="110" right="110"/>
+    <constraints>
+      <xy x="20" y="133" width="948" height="738"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="da173" class="javax.swing.JTextField" binding="textField">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="37"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="6f0bd" class="javax.swing.JTextField" binding="TTextField">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="37"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="d1625" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16" style="0"/>
+          <text value="Перевод"/>
+        </properties>
+      </component>
+      <component id="1e3b" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="16" style="0"/>
+          <text value="Слово/фраза"/>
+        </properties>
+      </component>
+      <component id="c5df9" class="javax.swing.JTextField" binding="FTextField">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="113c4" class="javax.swing.JTextPane" binding="textPane">
+        <constraints>
+          <grid row="10" column="1" row-span="2" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="16"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="421fa" class="javax.swing.JButton" binding="searchButton">
+        <constraints>
+          <grid row="9" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Поиск"/>
+        </properties>
+      </component>
+      <vspacer id="81ff1">
+        <constraints>
+          <grid row="2" column="1" row-span="5" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="61048" class="javax.swing.JRadioButton" binding="WrSearchRB">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="-&gt; слово"/>
+        </properties>
+      </component>
+      <vspacer id="21add">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="3d6d9" class="javax.swing.JRadioButton" binding="TrSearchRB">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="-&gt; перевод"/>
+        </properties>
+      </component>
+      <component id="394aa" class="javax.swing.JButton" binding="addButton">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="88" height="37"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="Добавить"/>
+        </properties>
+      </component>
+      <component id="c0233" class="javax.swing.JButton" binding="testButton">
+        <constraints>
+          <grid row="11" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="2" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-40353"/>
+          <enabled value="true"/>
+          <font size="16"/>
+          <foreground color="-1"/>
+          <text value="Тест"/>
+        </properties>
+      </component>
+      <component id="d01fe" class="javax.swing.JButton" binding="listButton">
+        <constraints>
+          <grid row="13" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="2" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="12"/>
+          <text value="Список слов"/>
+        </properties>
+      </component>
+      <vspacer id="cbca8">
+        <constraints>
+          <grid row="12" column="5" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="e8c64" class="javax.swing.JRadioButton" binding="TrTestRB">
+        <constraints>
+          <grid row="10" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="86" height="19"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="-&gt; перевод"/>
+        </properties>
+      </component>
+      <component id="e048f" class="javax.swing.JRadioButton" binding="WrTestRB">
+        <constraints>
+          <grid row="10" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="72" height="19"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="-&gt; слово"/>
+        </properties>
+      </component>
+      <vspacer id="6cb7e">
+        <constraints>
+          <grid row="14" column="5" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="9e10d" class="javax.swing.JButton" binding="infoButton">
+        <constraints>
+          <grid row="11" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="10" height="10"/>
+            <maximum-size width="50" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="?"/>
+        </properties>
+      </component>
+      <component id="20fcf" class="javax.swing.JButton" binding="cardButton">
+        <constraints>
+          <grid row="15" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Карточки"/>
+        </properties>
+      </component>
+      <component id="65d5e" class="javax.swing.JButton" binding="statistButton">
+        <constraints>
+          <grid row="15" column="5" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="2" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Статистика"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
