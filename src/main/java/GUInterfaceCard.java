@@ -38,11 +38,12 @@ public class GUInterfaceCard {
 
     private static GUInterfaceCard thisObj;
 
-    public static void newGUInterfaceCard(boolean hard) {
+    public static void newGUInterfaceCard(boolean visible, boolean hard) {
         if (thisObj == null)
             thisObj = new GUInterfaceCard();
         thisObj.hard = hard;
         thisObj.start();
+        thisObj.f.setVisible(visible);
     }
 
     private GUInterfaceCard() {
@@ -79,13 +80,13 @@ public class GUInterfaceCard {
         comboBox2.setSelectedIndex(0);
         startButton.addActionListener(e -> {
             int index1 = IntStream.range(0, elementsRus.length).
-                    filter(i -> comboBox1.getSelectedItem().equals(elementsRus[i])).findFirst().orElse(-1);
+                    filter(i -> Objects.equals(comboBox1.getSelectedItem(), elementsRus[i])).findFirst().orElse(-1);
             if (index1 == -1) index1 = IntStream.range(0, elementsEng.length).
-                    filter(i -> comboBox1.getSelectedItem().equals(elementsEng[i])).findFirst().orElse(-1);
+                    filter(i -> Objects.equals(comboBox1.getSelectedItem(), elementsEng[i])).findFirst().orElse(-1);
             int index2 = IntStream.range(0, elementsRus.length).
-                    filter(i -> comboBox2.getSelectedItem().equals(elementsRus[i])).findFirst().orElse(-1);
+                    filter(i -> Objects.equals(comboBox2.getSelectedItem(), elementsRus[i])).findFirst().orElse(-1);
             if (index2 == -1) index2 = IntStream.range(0, elementsEng.length).
-                    filter(i -> comboBox1.getSelectedItem().equals(elementsEng[i])).findFirst().orElse(-1);
+                    filter(i -> Objects.equals(comboBox1.getSelectedItem(), elementsEng[i])).findFirst().orElse(-1);
             list.clear();
             dbManager.fillMap(list, columns[index1], columns[index2], hard);
             index = -1;
@@ -165,7 +166,6 @@ public class GUInterfaceCard {
         } else if (!Objects.equals(comboBox1.getModel().getElementAt(0), "Word"))
             for (String el : elementsEng)
                 cbModel.addElement(el);
-
         if (cbModel.getSize() != 0) {
             DefaultComboBoxModel<String> cbModel1 = new DefaultComboBoxModel<>();
             for (int i = 0; i < cbModel.getSize(); i++) {
@@ -178,7 +178,6 @@ public class GUInterfaceCard {
         }
         f.setContentPane(this.initialPanel);
         f.revalidate();
-        f.setVisible(true);
     }
 
     private void next() {

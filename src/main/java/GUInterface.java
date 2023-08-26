@@ -31,10 +31,6 @@ public class GUInterface {
 
     private static GUInterface thisObj;
 
-    public static GUInterface getThisObj() {
-        return thisObj;
-    }
-
     public static void newGUInterface() {
         if (thisObj == null)
             thisObj = new GUInterface();
@@ -81,11 +77,11 @@ public class GUInterface {
             TTextField.setText("");
         });
         searchButton.addActionListener(e -> search());
-        testButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(WrTestRB.isSelected(), false));
-        listButton.addActionListener(e -> GUInterfaceList.newGUInterfaceList());
-        statistButton.addActionListener(e -> GUInterfaceStatistic.newGUInterfaceStatistic());
+        testButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(true, WrTestRB.isSelected(), false));
+        listButton.addActionListener(e -> GUInterfaceList.newGUInterfaceList(true));
+        statistButton.addActionListener(e -> GUInterfaceStatistic.newGUInterfaceStatistic(true));
         infoButton.addActionListener(e -> InfoFrame.newInfoFrame(true));
-        cardButton.addActionListener(e -> GUInterfaceCard.newGUInterfaceCard(false));
+        cardButton.addActionListener(e -> GUInterfaceCard.newGUInterfaceCard(true, false));
         f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {

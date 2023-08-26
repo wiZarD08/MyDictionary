@@ -6,7 +6,6 @@ import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.stream.IntStream;
 
 public class GUInterfaceList {
     private JPanel panel;
@@ -19,10 +18,11 @@ public class GUInterfaceList {
 
     private static GUInterfaceList thisObj;
 
-    public static void newGUInterfaceList() {
+    public static void newGUInterfaceList(boolean visible) {
         if (thisObj == null)
             thisObj = new GUInterfaceList();
         else thisObj.start();
+        thisObj.f.setVisible(visible);
     }
 
     private GUInterfaceList() {
@@ -48,7 +48,6 @@ public class GUInterfaceList {
         table.setFont(font);
         table.setRowHeight(25);
         columnCorrection(false);
-        f.setVisible(true);
         table.addContainerListener(new ContainerAdapter() {
             @Override
             public void componentAdded(ContainerEvent e) {
@@ -103,17 +102,17 @@ public class GUInterfaceList {
         }
         table.getColumnModel().getColumn(4 - cof).setPreferredWidth(140);    //translation
         table.getColumnModel().getColumn(4 - cof).setMaxWidth(200);
-        table.getColumnModel().getColumn(5 - cof).setPreferredWidth(240);    //definition
+        table.getColumnModel().getColumn(5 - cof).setPreferredWidth(320);    //definition
         if (sett[3]) {
-            table.getColumnModel().getColumn(6 - cof).setPreferredWidth(240);   //add4
-            size += 240;
+            table.getColumnModel().getColumn(6 - cof).setPreferredWidth(280);   //add4
+            size += 280;
         } else {
             table.removeColumn(table.getColumnModel().getColumn(6 - cof));
             cof++;
         }
         table.getColumnModel().getColumn(7 - cof).setMaxWidth(80);             //learned
 
-        f.setSize(600 + size, 550);
+        f.setSize(680 + size, 550);
         f.setLocationRelativeTo(null);
     }
 
@@ -124,7 +123,6 @@ public class GUInterfaceList {
         dbManager.fillTable(tableModel);
         table.setModel(tableModel);
         langM.changeTable(table);
-        f.setVisible(true);
     }
 
     private int id = 0;

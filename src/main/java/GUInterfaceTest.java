@@ -37,13 +37,13 @@ public class GUInterfaceTest {
 
     private static GUInterfaceTest thisObj;
 
-    public static void newGUInterfaceTest(boolean wrTestRBSelected, boolean learned) {
+    public static void newGUInterfaceTest(boolean visible, boolean wrTestRBSelected, boolean learned) {
         if (thisObj == null)
             thisObj = new GUInterfaceTest();
-        thisObj.f.setVisible(false);
         thisObj.wrTestRBSelected = wrTestRBSelected;
         thisObj.learned = learned;
         thisObj.start();
+        thisObj.f.setVisible(visible);
     }
 
     private GUInterfaceTest() {
@@ -106,7 +106,6 @@ public class GUInterfaceTest {
         dbManager.fillPairMap(map, learned);
         it = map.entrySet().iterator();
         thisObj.nextWord();
-        f.setVisible(true);
     }
 
     private void nextWord() {
@@ -152,7 +151,7 @@ public class GUInterfaceTest {
         else type = "повторение";
         dbManager.addTestSt(corWord, map.size(), type);
         toStatistics.addActionListener(e -> {
-            GUInterfaceStatistic.newGUInterfaceStatistic();
+            GUInterfaceStatistic.newGUInterfaceStatistic(true);
             f.setVisible(false);
         });
     }

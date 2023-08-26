@@ -23,7 +23,6 @@ public class InfoFrame {
     private final Style style = textPane.getStyle("Times New Roman");
 
     private final DBManager dbManager;
-    private final LangM langM;
     private boolean[] settings;
     private static InfoFrame thisObj;
 
@@ -31,11 +30,10 @@ public class InfoFrame {
         return thisObj;
     }
 
-    public static void newInfoFrame(boolean start) {
+    public static void newInfoFrame(boolean visible) {
         if (thisObj == null)
             thisObj = new InfoFrame();
-        if (start)
-            thisObj.f.setVisible(true);
+        thisObj.f.setVisible(visible);
     }
 
     public static void revalidate(String fileN) {
@@ -47,7 +45,7 @@ public class InfoFrame {
 
     private InfoFrame() {
         dbManager = GUInterface.getDbManager();
-        langM = GUInterface.getLangM();
+        LangM langM = GUInterface.getLangM();
         f = new JFrame("info");
         f.setSize(500, 600);
         f.setContentPane(this.panel);

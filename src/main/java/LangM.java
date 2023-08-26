@@ -3,12 +3,13 @@ import java.util.stream.IntStream;
 
 public class LangM {
     private boolean isRus = true;
-    private final String[] eng = {"Result:", "Space", "Arrows", "Word/Phrase", "Translation", "-> translation", "-> word",
+    private boolean first = false;
+    private final String[] eng = {"Result:", "Warning", "Space", "Arrows", "Word/Phrase", "Translation", "-> translation", "-> word",
             "Definition/Examples", "Learned", "First side of the card", "Second side of the card", "Hard words",
             "Well-learned", "in Learned      ", "Corr", "Total", "Type", "Add", "Search", "Test", "Flashcards",
             "Word list", "Statistics", "Skip/Next", "Check", "Correct answer:", "Go to statistics",
             "Start", "flashcards", "Add to learned", "Repeat", "Clear all data"};
-    private final String[] rus = {"Результат:", "Пробел", "Стрелки", "Слово/Фраза", "Перевод", "-> перевод", "-> слово",
+    private final String[] rus = {"Результат:", "Предупреждение", "Пробел", "Стрелки", "Слово/Фраза", "Перевод", "-> перевод", "-> слово",
             "Определение/Примеры", "Изучено", "Первая сторона карточки", "Вторая сторона карточки", "Трудные слова",
             "Хорошо выученное", "Изученное       ", "Прав", "Всего", "Тип", "Добавить", "Поиск", "Тест", "Карточки",
             "Список слов", "Статистика", "Пропуск/Далее", "Проверка", "Правильный ответ:", "Перейти к статистике",
@@ -21,6 +22,14 @@ public class LangM {
 
     public void intoEng() {
         isRus = false;
+        if (!first) {
+            GUInterfaceTest.newGUInterfaceTest(false, false, false);
+            GUInterfaceList.newGUInterfaceList(false);
+            GUInterfaceStatistic.newGUInterfaceStatistic(false);
+            InfoFrame.newInfoFrame(false);
+            GUInterfaceCard.newGUInterfaceCard(false, false);
+        }
+        first = true;
         int index;
         for (JLabel i : labels) {
             if (i != null && (index = IntStream.range(0, rus.length).filter(e -> i.getText().trim().equals(rus[e])).findFirst().
@@ -85,6 +94,22 @@ public class LangM {
     public String getRes() {
         if (isRus) return rus[0];
         return eng[0];
+    }
+
+    public String getMessage() {
+        if (isRus) return """
+                Вы уверены, что хотите стереть все данные?
+                Будут удалены все слова и информация из статистики
+                """;
+        return """
+                Are you sure you want to erase all the data?
+                All words and information from statistics will be deleted
+                """;
+    }
+
+    public String getTitle() {
+        if (isRus) return rus[1];
+        return eng[1];
     }
 
     public void addLab(JLabel l) {

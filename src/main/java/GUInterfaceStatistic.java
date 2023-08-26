@@ -27,10 +27,11 @@ public class GUInterfaceStatistic {
 
     private static GUInterfaceStatistic thisObj;
 
-    public static void newGUInterfaceStatistic() {
+    public static void newGUInterfaceStatistic(boolean visible) {
         if (thisObj == null)
             thisObj = new GUInterfaceStatistic();
         thisObj.start();
+        thisObj.f.setVisible(visible);
     }
 
     private GUInterfaceStatistic() {
@@ -81,20 +82,16 @@ public class GUInterfaceStatistic {
         table.getColumnModel().getColumn(0).setCellRenderer(new CustomRenderer());
         table.getColumnModel().getColumn(3).setCellRenderer(customRenderer);
 
-        cardButton.addActionListener(e -> {
-            GUInterfaceCard.newGUInterfaceCard(true);
-        });
+        cardButton.addActionListener(e -> GUInterfaceCard.newGUInterfaceCard(true, true));
         addLearnedButton.addActionListener(e -> {
             dbManager.addToLearned(textPane2.getText());
             textPane2.setText(dbManager.getGoodWords());
             textPane3.setText(dbManager.getLearnedWords());
         });
-        repeatButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(true, true));
+        repeatButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(true, true, true));
         clearButton.addActionListener((e -> {
-            int result = JOptionPane.showConfirmDialog(f, """
-                    Вы уверены, что хотите стереть все данные?
-                    Будут удалены все слова и информация из статистики
-                    """, "Предупреждение", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int result = JOptionPane.showConfirmDialog(f, langM.getMessage(), langM.getTitle(),
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (result == JOptionPane.YES_OPTION)
                 dbManager.deleteAll();
         }));
@@ -133,7 +130,5 @@ public class GUInterfaceStatistic {
         dbManager.fillStatTable(tableModel);
         table.setModel(tableModel);
         langM.changeTable(table);
-
-        f.setVisible(true);
     }
 }
