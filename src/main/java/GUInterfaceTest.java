@@ -53,6 +53,11 @@ public class GUInterfaceTest {
         f.setSize(440, 300);
         f.setContentPane(this.panel);
         f.setLocationRelativeTo(null);
+
+        langM.addBut(nextButton);
+        langM.addBut(CorrectButton);
+        langM.addBut(checkButton);
+        langM.addBut(toStatistics);
         nextButton.addActionListener(e -> nextWord());
         CorrectButton.addActionListener(e -> answerLabel.setText(getCorr()));
         checkButton.addActionListener(e -> checkAnswer());
@@ -123,7 +128,7 @@ public class GUInterfaceTest {
         endPanel.removeAll();
         endPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         endPanel.add(Box.createRigidArea(new Dimension(2000, 70)));
-        result.setText("Результат:   " + corWord + "/" + map.size());
+        result.setText(langM.getRes() + "   " + corWord + "/" + map.size());
         result.setFont(new Font("TimesRoman", Font.PLAIN, 25));
         endPanel.add(result);
         endPanel.add(Box.createRigidArea(new Dimension(2000, 8)));

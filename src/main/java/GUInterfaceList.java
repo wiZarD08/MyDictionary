@@ -6,6 +6,7 @@ import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.stream.IntStream;
 
 public class GUInterfaceList {
     private JPanel panel;
@@ -103,10 +104,8 @@ public class GUInterfaceList {
         table.getColumnModel().getColumn(4 - cof).setPreferredWidth(140);    //translation
         table.getColumnModel().getColumn(4 - cof).setMaxWidth(200);
         table.getColumnModel().getColumn(5 - cof).setPreferredWidth(240);    //definition
-        //table.getColumnModel().getColumn(5 - cof).setMaxWidth(200);
         if (sett[3]) {
             table.getColumnModel().getColumn(6 - cof).setPreferredWidth(240);   //add4
-            //table.getColumnModel().getColumn(6 - cof).setMaxWidth(200);
             size += 240;
         } else {
             table.removeColumn(table.getColumnModel().getColumn(6 - cof));
@@ -124,6 +123,7 @@ public class GUInterfaceList {
         columnCorrection(true);
         dbManager.fillTable(tableModel);
         table.setModel(tableModel);
+        langM.changeTable(table);
         f.setVisible(true);
     }
 

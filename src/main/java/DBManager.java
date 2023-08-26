@@ -228,23 +228,24 @@ public class DBManager {
         }
     }
 
-    public String[] getStatString() {
+    public String[] getStatString(LangM langM) {
         String[] arr = new String[3];
+        String[] words = langM.getStatSt();
         try (ResultSet res = state.executeQuery("SELECT COUNT(*) FROM dictionary;")) {
             if (res.next())
-                arr[0] = "Добавлено " + res.getInt(1) + " слов";
+                arr[0] = words[0] + res.getInt(1) + words[1];
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try (ResultSet res = state.executeQuery("SELECT COUNT(*) FROM dictionary WHERE learned = 1;")) {
             if (res.next())
-                arr[1] = "Выучено " + res.getInt(1);
+                arr[1] = words[2] + res.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try (ResultSet res = state.executeQuery("SELECT COUNT(*) FROM statistics")) {
             if (res.next())
-                arr[2] = "Пройдено " + res.getInt(1) + " тестов";
+                arr[2] = words[3] + res.getInt(1) + words[4];
         } catch (SQLException e) {
             e.printStackTrace();
         }

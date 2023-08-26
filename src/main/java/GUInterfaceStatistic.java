@@ -18,6 +18,9 @@ public class GUInterfaceStatistic {
     private JLabel statLab1;
     private JLabel statLab2;
     private JLabel statLab3;
+    private JLabel l1;
+    private JLabel l2;
+    private JLabel l3;
 
     private final DBManager dbManager;
     private final LangM langM;
@@ -38,6 +41,13 @@ public class GUInterfaceStatistic {
         f.setContentPane(this.panel);
         f.setLocationRelativeTo(null);
 
+        langM.addLab(l1);
+        langM.addLab(l2);
+        langM.addLab(l3);
+        langM.addBut(cardButton);
+        langM.addBut(addLearnedButton);
+        langM.addBut(repeatButton);
+        langM.addBut(clearButton);
         Object[] columnsHeader = new String[]{"", "Прав", "Всего", " % ", "Тип"};
         Class<?>[] classes = new Class[]{Integer.class, Integer.class, Integer.class, String.class, String.class};
         Object[][] data = new Object[][]{};
@@ -90,7 +100,7 @@ public class GUInterfaceStatistic {
         }));
     }
 
-    private static Font smallFont = new Font("TimesRoman", Font.PLAIN, 12);
+    private static final Font smallFont = new Font("TimesRoman", Font.PLAIN, 12);
 
     static class CustomRenderer extends DefaultTableCellRenderer {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -113,7 +123,7 @@ public class GUInterfaceStatistic {
         textPane1.setText(dbManager.getHardWords());
         textPane2.setText(dbManager.getGoodWords());
         textPane3.setText(dbManager.getLearnedWords());
-        String[] arr = dbManager.getStatString();
+        String[] arr = dbManager.getStatString(langM);
         statLab1.setText(arr[0]);
         statLab2.setText(arr[1]);
         statLab3.setText(arr[2]);
@@ -122,6 +132,7 @@ public class GUInterfaceStatistic {
             tableModel.removeRow(i);
         dbManager.fillStatTable(tableModel);
         table.setModel(tableModel);
+        langM.changeTable(table);
 
         f.setVisible(true);
     }

@@ -23,6 +23,8 @@ public class GUInterface {
     private JButton cardButton;
     private JButton engButton;
     private JButton rusButton;
+    private JLabel l1;
+    private JLabel l2;
 
     private static final DBManager dbManager = new DBManager();
     private static final LangM langM = new LangM();
@@ -45,6 +47,18 @@ public class GUInterface {
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         f.setLocationRelativeTo(null);
 
+        langM.addLab(l1);
+        langM.addLab(l2);
+        langM.addRB(TrSearchRB);
+        langM.addRB(WrSearchRB);
+        langM.addRB(TrTestRB);
+        langM.addRB(WrTestRB);
+        langM.addBut(addButton);
+        langM.addBut(searchButton);
+        langM.addBut(testButton);
+        langM.addBut(cardButton);
+        langM.addBut(listButton);
+        langM.addBut(statistButton);
         rusButton.setEnabled(false);
         infoButton.setMargin(new java.awt.Insets(1, 2, 1, 2));
         engButton.setMargin(new java.awt.Insets(1, 2, 1, 2));

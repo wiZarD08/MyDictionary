@@ -30,7 +30,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="d1625" class="javax.swing.JLabel">
+      <component id="d1625" class="javax.swing.JLabel" binding="l2">
         <constraints>
           <grid row="0" column="6" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -39,13 +39,13 @@
           <text value="Перевод"/>
         </properties>
       </component>
-      <component id="1e3b" class="javax.swing.JLabel">
+      <component id="1e3b" class="javax.swing.JLabel" binding="l1">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font size="16" style="0"/>
-          <text value="Слово/фраза"/>
+          <text value="Слово/Фраза"/>
         </properties>
       </component>
       <component id="c5df9" class="javax.swing.JTextField" binding="FTextField">

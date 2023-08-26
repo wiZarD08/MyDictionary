@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.IntStream;
 
 public class GUInterfaceCard {
@@ -15,12 +16,19 @@ public class GUInterfaceCard {
     private JButton startButton;
     private JComboBox<String> comboBox1;
     private JComboBox<String> comboBox2;
+    private JLabel l1;
+    private JLabel l2;
     private final JPanel panel1;
     private final JLabel lab1;
     private final JLabel labNum1;
     private final JPanel panel2;
     private final JLabel lab2;
     private final JLabel labNum2;
+
+    private final String[] elementsRus = new String[]{"Слово", "Перевод", "Определение", "1 доп столбец", "2 доп столбец"
+            , "3 доп столбец", "4 доп столбец"};
+    private final String[] elementsEng = new String[]{"Word", "Translation", "Definition", "1 add. column", "2 add. column"
+            , "3 add. column", "4 add. column"};
 
     private boolean hard;
     private final List<Entry> list = new ArrayList<>();
@@ -52,15 +60,16 @@ public class GUInterfaceCard {
         labNum1 = card1.newCard1().getLabNum();
         labNum2 = card2.newCard2().getLabNum();
 
+        langM.addLab(l1);
+        langM.addLab(l2);
+        langM.addBut(startButton);
         DefaultComboBoxModel<String> cbModel1 = new DefaultComboBoxModel<>();
         DefaultComboBoxModel<String> cbModel2 = new DefaultComboBoxModel<>();
-        String[] elements1 = new String[]{"Слово", "Перевод", "Определение", "1 доп столбец", "2 доп столбец"
-                , "3 доп столбец", "4 доп столбец"};
         String[] columns = new String[]{"word", "translation", "definition", "addition1", "addition2"
                 , "addition3", "addition4"};
-        String[] elements2 = new String[elements1.length];
-        System.arraycopy(elements1, 0, elements2, 0, elements1.length);
-        for (String el : elements1)
+        String[] elements2 = new String[elementsRus.length];
+        System.arraycopy(elementsRus, 0, elements2, 0, elementsRus.length);
+        for (String el : elementsRus)
             cbModel1.addElement(el);
         for (String el : elements2)
             cbModel2.addElement(el);
@@ -69,10 +78,14 @@ public class GUInterfaceCard {
         comboBox2.setModel(cbModel2);
         comboBox2.setSelectedIndex(0);
         startButton.addActionListener(e -> {
-            int index1 = IntStream.range(0, elements1.length).
-                    filter(i -> comboBox1.getSelectedItem().equals(elements1[i])).findFirst().orElse(-1);
-            int index2 = IntStream.range(0, elements1.length).
-                    filter(i -> comboBox2.getSelectedItem().equals(elements1[i])).findFirst().orElse(-1);
+            int index1 = IntStream.range(0, elementsRus.length).
+                    filter(i -> comboBox1.getSelectedItem().equals(elementsRus[i])).findFirst().orElse(-1);
+            if (index1 == -1) index1 = IntStream.range(0, elementsEng.length).
+                    filter(i -> comboBox1.getSelectedItem().equals(elementsEng[i])).findFirst().orElse(-1);
+            int index2 = IntStream.range(0, elementsRus.length).
+                    filter(i -> comboBox2.getSelectedItem().equals(elementsRus[i])).findFirst().orElse(-1);
+            if (index2 == -1) index2 = IntStream.range(0, elementsEng.length).
+                    filter(i -> comboBox1.getSelectedItem().equals(elementsEng[i])).findFirst().orElse(-1);
             list.clear();
             dbManager.fillMap(list, columns[index1], columns[index2], hard);
             index = -1;
@@ -144,6 +157,25 @@ public class GUInterfaceCard {
     }
 
     private void start() {
+        DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>();
+        if (langM.isRus()) {
+            if (!Objects.equals(comboBox1.getModel().getElementAt(0), "Слово"))
+                for (String el : elementsRus)
+                    cbModel.addElement(el);
+        } else if (!Objects.equals(comboBox1.getModel().getElementAt(0), "Word"))
+            for (String el : elementsEng)
+                cbModel.addElement(el);
+
+        if (cbModel.getSize() != 0) {
+            DefaultComboBoxModel<String> cbModel1 = new DefaultComboBoxModel<>();
+            for (int i = 0; i < cbModel.getSize(); i++) {
+                cbModel1.addElement(cbModel.getElementAt(i));
+            }
+            comboBox1.setModel(cbModel);
+            comboBox1.setSelectedIndex(1);
+            comboBox2.setModel(cbModel1);
+            comboBox2.setSelectedIndex(0);
+        }
         f.setContentPane(this.initialPanel);
         f.revalidate();
         f.setVisible(true);

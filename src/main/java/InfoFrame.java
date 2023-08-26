@@ -69,7 +69,6 @@ public class InfoFrame {
     private void fillPane() {
         textPane.removeAll();
         textPane.setText("");
-        System.out.println(textPane.getDocument());
         String infoSt = "";
         try {
             infoSt = Files.readString(Path.of(fileName), Charset.defaultCharset());
