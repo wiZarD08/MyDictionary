@@ -26,18 +26,20 @@ public class GUInterfaceCard {
     private final List<Entry> list = new ArrayList<>();
     private int index;
     private final DBManager dbManager;
+    private final LangM langM;
 
     private static GUInterfaceCard thisObj;
 
-    public static void newGUInterfaceCard(DBManager m, boolean hard) {
+    public static void newGUInterfaceCard(boolean hard) {
         if (thisObj == null)
-            thisObj = new GUInterfaceCard(m);
+            thisObj = new GUInterfaceCard();
         thisObj.hard = hard;
         thisObj.start();
     }
 
-    private GUInterfaceCard(DBManager m) {
-        dbManager = m;
+    private GUInterfaceCard() {
+        dbManager = GUInterface.getDbManager();
+        langM = GUInterface.getLangM();
         f = new JFrame("cards");
         f.setSize(400, 250);
         f.setLocationRelativeTo(null);

@@ -24,9 +24,14 @@ public class GUInterface {
     private JButton engButton;
     private JButton rusButton;
 
-    private final DBManager dbManager;
+    private static final DBManager dbManager = new DBManager();
+    private static final LangM langM = new LangM();
 
     private static GUInterface thisObj;
+
+    public static GUInterface getThisObj() {
+        return thisObj;
+    }
 
     public static void newGUInterface() {
         if (thisObj == null)
@@ -34,8 +39,6 @@ public class GUInterface {
     }
 
     public GUInterface() {
-        dbManager = new DBManager();
-
         JFrame f = new JFrame();
         f.setSize(750, 580);
         f.setContentPane(this.panel);
@@ -57,18 +60,18 @@ public class GUInterface {
         TrTestRB.setSelected(true);
 
         f.setVisible(true);
-        InfoFrame.newInfoFrame(dbManager, false);
+        InfoFrame.newInfoFrame(false);
         addButton.addActionListener(e -> {
             dbManager.insert(textField.getText(), TTextField.getText());
             textField.setText("");
             TTextField.setText("");
         });
         searchButton.addActionListener(e -> search());
-        testButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(dbManager, WrTestRB.isSelected(), false));
-        listButton.addActionListener(e -> GUInterfaceList.newGUInterfaceList(dbManager));
-        statistButton.addActionListener(e -> GUInterfaceStatistic.newGUInterfaceStatistic(dbManager));
-        infoButton.addActionListener(e -> InfoFrame.newInfoFrame(dbManager, true));
-        cardButton.addActionListener(e -> GUInterfaceCard.newGUInterfaceCard(dbManager, false));
+        testButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(WrTestRB.isSelected(), false));
+        listButton.addActionListener(e -> GUInterfaceList.newGUInterfaceList());
+        statistButton.addActionListener(e -> GUInterfaceStatistic.newGUInterfaceStatistic());
+        infoButton.addActionListener(e -> InfoFrame.newInfoFrame(true));
+        cardButton.addActionListener(e -> GUInterfaceCard.newGUInterfaceCard(false));
         f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
@@ -92,10 +95,12 @@ public class GUInterface {
         engButton.addActionListener(e -> {
             engButton.setEnabled(false);
             rusButton.setEnabled(true);
+            langM.intoEng();
         });
         rusButton.addActionListener(e -> {
             rusButton.setEnabled(false);
             engButton.setEnabled(true);
+            langM.intoRus();
         });
     }
 
@@ -103,5 +108,13 @@ public class GUInterface {
         if (TrSearchRB.isSelected())
             textPane.setText(dbManager.findTr(FTextField.getText().trim()));
         else textPane.setText(dbManager.findWr(FTextField.getText().trim()));
+    }
+
+    public static DBManager getDbManager() {
+        return dbManager;
+    }
+
+    public static LangM getLangM() {
+        return langM;
     }
 }

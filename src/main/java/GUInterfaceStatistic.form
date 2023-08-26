@@ -123,7 +123,8 @@
           </grid>
         </constraints>
         <properties>
-          <text value="карточки"/>
+          <font size="10"/>
+          <text value="Повторить по карточкам"/>
         </properties>
       </component>
       <component id="2d6ef" class="javax.swing.JButton" binding="addLearnedButton">
@@ -134,7 +135,7 @@
         </constraints>
         <properties>
           <font size="10"/>
-          <text value="добавить в изученное"/>
+          <text value="Добавить в изученное"/>
         </properties>
       </component>
       <component id="10a31" class="javax.swing.JButton" binding="repeatButton">
@@ -144,7 +145,7 @@
           </grid>
         </constraints>
         <properties>
-          <text value="повторить"/>
+          <text value="Повторить"/>
         </properties>
       </component>
       <scrollpane id="781c4">

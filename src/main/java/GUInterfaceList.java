@@ -12,21 +12,21 @@ public class GUInterfaceList {
     private JTable table;
     private final JFrame f;
     private final DefaultTableModel tableModel;
-    private boolean[] sett;
 
     private final DBManager dbManager;
+    private final LangM langM;
 
     private static GUInterfaceList thisObj;
 
-    public static void newGUInterfaceList(DBManager m) {
+    public static void newGUInterfaceList() {
         if (thisObj == null)
-            thisObj = new GUInterfaceList(m);
+            thisObj = new GUInterfaceList();
         else thisObj.start();
     }
 
-    private GUInterfaceList(DBManager m) {
-        InfoFrame ff;
-        dbManager = m;
+    private GUInterfaceList() {
+        dbManager = GUInterface.getDbManager();
+        langM = GUInterface.getLangM();
         f = new JFrame("table");
         f.setContentPane(this.panel);
 
@@ -71,7 +71,7 @@ public class GUInterfaceList {
                 table.addColumn(new TableColumn(i));
         }
         table.removeColumn(table.getColumnModel().getColumn(0));
-        sett = InfoFrame.getThisObj().getSettings();
+        boolean[] sett = InfoFrame.getThisObj().getSettings();
         int cof = 0;
         int size = 0;
         if (sett[0]) {

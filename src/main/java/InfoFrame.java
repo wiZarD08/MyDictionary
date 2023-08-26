@@ -7,11 +7,13 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class InfoFrame {
     private final JFrame f;
     private JPanel panel;
     private JTextPane textPane;
+    private static String fileName = "InfoRus";
     private final JRadioButton space = new JRadioButton("Пробел");
     private final JRadioButton arrow = new JRadioButton("Стрелки");
     private final Checkbox box1 = new Checkbox("1");
@@ -21,6 +23,7 @@ public class InfoFrame {
     private final Style style = textPane.getStyle("Times New Roman");
 
     private final DBManager dbManager;
+    private final LangM langM;
     private boolean[] settings;
     private static InfoFrame thisObj;
 
@@ -28,34 +31,52 @@ public class InfoFrame {
         return thisObj;
     }
 
-    public static void newInfoFrame(DBManager dbManager, boolean start) {
+    public static void newInfoFrame(boolean start) {
         if (thisObj == null)
-            thisObj = new InfoFrame(dbManager);
+            thisObj = new InfoFrame();
         if (start)
             thisObj.f.setVisible(true);
     }
 
-    private InfoFrame(DBManager dbManager) {
-        this.dbManager = dbManager;
+    public static void revalidate(String fileN) {
+        if (thisObj != null && !Objects.equals(fileName, fileN)) {
+            fileName = fileN;
+            thisObj.fillPane();
+        } else fileName = fileN;
+    }
+
+    private InfoFrame() {
+        dbManager = GUInterface.getDbManager();
+        langM = GUInterface.getLangM();
         f = new JFrame("info");
         f.setSize(500, 600);
         f.setContentPane(this.panel);
         f.setLocationRelativeTo(null);
-        String infoSt = "";
-        try {
-            infoSt = Files.readString(Path.of("Info"), Charset.defaultCharset());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String[] info = infoSt.split("//");
-        textPane.setEditable(false);
 
+        langM.addRB(space);
+        langM.addRB(arrow);
+
+        textPane.setEditable(false);
         space.setOpaque(false);
         space.setSelected(true);
         arrow.setOpaque(false);
         ButtonGroup keysGroup = new ButtonGroup();
         keysGroup.add(space);
         keysGroup.add(arrow);
+        fillPane();
+    }
+
+    private void fillPane() {
+        textPane.removeAll();
+        textPane.setText("");
+        System.out.println(textPane.getDocument());
+        String infoSt = "";
+        try {
+            infoSt = Files.readString(Path.of(fileName), Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] info = infoSt.split("//");
 
         insert(info[0]);
         textPane.insertComponent(arrow);

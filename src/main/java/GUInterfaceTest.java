@@ -24,6 +24,8 @@ public class GUInterfaceTest {
     private final JButton toStatistics = new JButton("Перейти к статистике");
 
     private final DBManager dbManager;
+    private final LangM langM;
+
     private final Map<Pair, String> map = new HashMap<>();
     private Iterator<Map.Entry<Pair, String>> it;
     private Map.Entry<Pair, String> now;
@@ -35,17 +37,18 @@ public class GUInterfaceTest {
 
     private static GUInterfaceTest thisObj;
 
-    public static void newGUInterfaceTest(DBManager m, boolean wrTestRBSelected, boolean learned) {
+    public static void newGUInterfaceTest(boolean wrTestRBSelected, boolean learned) {
         if (thisObj == null)
-            thisObj = new GUInterfaceTest(m);
+            thisObj = new GUInterfaceTest();
         thisObj.f.setVisible(false);
         thisObj.wrTestRBSelected = wrTestRBSelected;
         thisObj.learned = learned;
         thisObj.start();
     }
 
-    private GUInterfaceTest(DBManager m) {
-        dbManager = m;
+    private GUInterfaceTest() {
+        dbManager = GUInterface.getDbManager();
+        langM = GUInterface.getLangM();
         f = new JFrame("test");
         f.setSize(440, 300);
         f.setContentPane(this.panel);
@@ -144,7 +147,7 @@ public class GUInterfaceTest {
         else type = "повторение";
         dbManager.addTestSt(corWord, map.size(), type);
         toStatistics.addActionListener(e -> {
-            GUInterfaceStatistic.newGUInterfaceStatistic(dbManager);
+            GUInterfaceStatistic.newGUInterfaceStatistic();
             f.setVisible(false);
         });
     }

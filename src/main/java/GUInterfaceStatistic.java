@@ -20,17 +20,19 @@ public class GUInterfaceStatistic {
     private JLabel statLab3;
 
     private final DBManager dbManager;
+    private final LangM langM;
 
     private static GUInterfaceStatistic thisObj;
 
-    public static void newGUInterfaceStatistic(DBManager m) {
+    public static void newGUInterfaceStatistic() {
         if (thisObj == null)
-            thisObj = new GUInterfaceStatistic(m);
+            thisObj = new GUInterfaceStatistic();
         thisObj.start();
     }
 
-    private GUInterfaceStatistic(DBManager m) {
-        dbManager = m;
+    private GUInterfaceStatistic() {
+        dbManager = GUInterface.getDbManager();
+        langM = GUInterface.getLangM();
         f = new JFrame("statistics");
         f.setSize(500, 550);
         f.setContentPane(this.panel);
@@ -70,14 +72,14 @@ public class GUInterfaceStatistic {
         table.getColumnModel().getColumn(3).setCellRenderer(customRenderer);
 
         cardButton.addActionListener(e -> {
-            GUInterfaceCard.newGUInterfaceCard(dbManager, true);
+            GUInterfaceCard.newGUInterfaceCard(true);
         });
         addLearnedButton.addActionListener(e -> {
             dbManager.addToLearned(textPane2.getText());
             textPane2.setText(dbManager.getGoodWords());
             textPane3.setText(dbManager.getLearnedWords());
         });
-        repeatButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(dbManager, true, true));
+        repeatButton.addActionListener(e -> GUInterfaceTest.newGUInterfaceTest(true, true));
         clearButton.addActionListener((e -> {
             int result = JOptionPane.showConfirmDialog(f, """
                     Вы уверены, что хотите стереть все данные?

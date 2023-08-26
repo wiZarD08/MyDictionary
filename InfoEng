@@ -1,0 +1,22 @@
+Hot keys for tests:
+     (Pressing buttons while cursor is in the text field)
+     - Enter to check;
+     - Space or any of the Arrows to move to the next word.
+         //
+Hot keys for moving through the cards - Arrows:
+     - right (->) transition to the next;
+     - left (<-) transition to the previous one;
+     - up/down opening of the second side.
+//
+Learned words don't appear in the test on the main menu and in the cards.
+The test with only learned words can be opened using the buttons: "Statistics" -> "Repeat".
+//
+Additional columns can be added to the word list for personal use:
+- 1st small column before a foreign word (for example, for articles or parts of speech);
+- 2nd and 3rd columns for 1-2 words in addition to the main one (for example, another word entries, transcriptions);
+- 4th large column after the definition for a small sentence (example of using a word, phrase).
+//
+Evaluation criteria in statistics:
+     - Words are considered hard if a mistake was made in the last 2 tests;
+     - Words are considered well-learned if the last 3 tests were answered correctly or if the word was written correctly at least 5 times, the last 2 of which in a row.
+//
