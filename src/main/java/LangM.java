@@ -6,17 +6,17 @@ public class LangM {
     private boolean first = false;
     private final String[] eng = {"Result:", "Warning", "Space", "Arrows", "Word/Phrase", "Translation", "-> translation", "-> word",
             "Definition/Examples", "Learned", "First side of the card", "Second side of the card", "Hard words",
-            "Well-learned", "in Learned      ", "Corr", "Total", "Type", "Add", "Search", "Test", "Flashcards",
+            "Well-learned", "in Learned", "Corr", "Total", "Type", "Add", "Search", "Test", "Flashcards",
             "Word list", "Statistics", "Skip/Next", "Check", "Correct answer:", "Go to statistics",
             "Start", "flashcards", "Add to learned", "Repeat", "Clear all data"};
     private final String[] rus = {"Результат:", "Предупреждение", "Пробел", "Стрелки", "Слово/Фраза", "Перевод", "-> перевод", "-> слово",
             "Определение/Примеры", "Изучено", "Первая сторона карточки", "Вторая сторона карточки", "Трудные слова",
-            "Хорошо выученное", "Изученное       ", "Прав", "Всего", "Тип", "Добавить", "Поиск", "Тест", "Карточки",
+            "Хорошо выученное", "Изученное", "Прав", "Всего", "Тип", "Добавить", "Поиск", "Тест", "Карточки",
             "Список слов", "Статистика", "Пропуск/Далее", "Проверка", "Правильный ответ:", "Перейти к статистике",
             "Начать", "Повторить по карточкам", "Добавить в изученное", "Повторить", "Отчистить всё"};
     private final String[] rusStat = {"Добавлено ", " слов", "Выучено ", "Пройдено ", " тестов"};
     private final String[] engStat = {"Added ", " words", "Learned ", "Passed ", " tests"};
-    private final JLabel[] labels = new JLabel[11];
+    private final JLabel[] labels = new JLabel[12];
     private final JButton[] buttons = new JButton[15];
     private final JRadioButton[] rb = new JRadioButton[6];
 
