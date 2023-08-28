@@ -86,7 +86,7 @@ public class GUInterfaceCard {
             int index2 = IntStream.range(0, elementsRus.length).
                     filter(i -> Objects.equals(comboBox2.getSelectedItem(), elementsRus[i])).findFirst().orElse(-1);
             if (index2 == -1) index2 = IntStream.range(0, elementsEng.length).
-                    filter(i -> Objects.equals(comboBox1.getSelectedItem(), elementsEng[i])).findFirst().orElse(-1);
+                    filter(i -> Objects.equals(comboBox2.getSelectedItem(), elementsEng[i])).findFirst().orElse(-1);
             list.clear();
             dbManager.fillMap(list, columns[index1], columns[index2], hard);
             index = -1;
